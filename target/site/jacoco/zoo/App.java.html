@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">RevisionPoo</a> &gt; <a href="index.source.html" class="el_package">zoo</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package zoo;
+
+import Exceptions.AnimalDansMauvaisSecteurException;
+import Exceptions.LimiteVisiteurExpetion;
+
+import java.beans.XMLEncoder;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import org.apache.logging.log4j.LogManager; 
+import org.apache.logging.log4j.Logger;
+
+import com.thoughtworks.xstream.XStream;
+
+
+
+<span class="nc" id="L22">public class App {</span>
+	
+	
+	  //LOG42 
+<span class="nc" id="L26">	  private static final Logger logger = LogManager.getLogger(App.class);</span>
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+<span class="nc" id="L30">		  logger.trace(&quot;Debut de l'application&quot;);</span>
+<span class="nc" id="L31">		  logger.debug(&quot;Debut de l'application&quot;);</span>
+<span class="nc" id="L32">		  logger.info(&quot;Debut de l'application&quot;);</span>
+<span class="nc" id="L33">		  logger.warn(&quot;Debut de l'application&quot;);</span>
+<span class="nc" id="L34">		  logger.error(&quot;Debut de l'application&quot;);</span>
+<span class="nc" id="L35">		  logger.fatal(&quot;Debut de l'application&quot;);</span>
+		  
+<span class="nc" id="L37">		  interfaceUtilisateur();</span>
+
+<span class="nc" id="L39">		Zoo zoo = new Zoo();</span>
+
+		
+<span class="nc" id="L42">		Secteur sChat=new Secteur(TypeAnimal.CHAT);</span>
+<span class="nc" id="L43">		Secteur sChien=new Secteur(TypeAnimal.CHIEN);</span>
+		
+<span class="nc" id="L45">		Animal a = new Animal(&quot;Snowy&quot;,TypeAnimal.CHAT);</span>
+<span class="nc" id="L46">		Animal a1 = new Animal(&quot;Delio&quot;,TypeAnimal.CHIEN);</span>
+<span class="nc" id="L47">		Animal a2 = new Animal(&quot;Diana&quot;,TypeAnimal.CHAT);</span>
+<span class="nc" id="L48">		Animal a3 = new Animal(&quot;Laly&quot;,TypeAnimal.CHAT);</span>
+		
+		
+<span class="nc" id="L51">		zoo.ajouterSecteur(&quot;CHAT&quot;);</span>
+<span class="nc" id="L52">		zoo.ajouterSecteur(&quot;CHIEN&quot;);</span>
+		
+		try {
+<span class="nc" id="L55">			zoo.nouvelAnimal(a);</span>
+<span class="nc" id="L56">			zoo.nouvelAnimal(a1);</span>
+<span class="nc" id="L57">			zoo.nouvelAnimal(a2);</span>
+<span class="nc" id="L58">			zoo.nouvelAnimal(a3);</span>
+<span class="nc" id="L59">		} catch (AnimalDansMauvaisSecteurException e1) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L61">			e1.printStackTrace();</span>
+<span class="nc" id="L62">		}</span>
+		
+ 
+		try {
+<span class="nc" id="L66">			zoo.nouveauVisiteur();</span>
+<span class="nc" id="L67">			zoo.nouveauVisiteur();</span>
+<span class="nc" id="L68">			zoo.nouveauVisiteur();</span>
+			//zoo.nouveauVisiteur();
+
+
+<span class="nc" id="L72">		} catch (LimiteVisiteurExpetion e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L74">			e.printStackTrace();</span>
+<span class="nc" id="L75">		}</span>
+		
+<span class="nc" id="L77">	      System.out.println(zoo.nombreAnimaux());</span>
+	   //System.out.println(&quot;zoo contient: &quot;+zoo.getVisiteurs());
+
+	      //LOGGER SHOW MESSAGE
+	   //logger.info(&quot;zoo contient: &quot; + zoo.getVisiteurs());
+
+
+<span class="nc" id="L84">	}</span>
+	private static void menu(Zoo zoo) {
+<span class="nc" id="L86">		  System.out.println(&quot;ZOO&quot;+&quot; : Que souhaitez vous faire ?&quot;);</span>
+<span class="nc" id="L87">		  System.out.println(&quot;1 : Creer un nouveau zoo&quot;);</span>
+<span class="nc" id="L88">		  System.out.println(&quot;2 : Ajouter un nouvel secteur&quot;);</span>
+<span class="nc" id="L89">		  System.out.println(&quot;3 : Ajouter un nouvel animal&quot;);</span>
+<span class="nc" id="L90">		  System.out.println(&quot;4 : Ajouter un visiteur&quot;);</span>
+<span class="nc" id="L91">		  System.out.println(&quot;5 : Sauvegarder mon zoo&quot;);</span>
+<span class="nc" id="L92">		  System.out.println(&quot;6 : Charger un zoo&quot;);</span>
+<span class="nc" id="L93">		  System.out.println(&quot;0 : Pour quitter&quot;);</span>
+<span class="nc" id="L94">		  System.out.println(&quot;Votre choix&quot;);</span>
+<span class="nc" id="L95">	  }</span>
+	
+	private static void interfaceUtilisateur() throws IOException {
+<span class="nc" id="L98">		  Zoo zoo = new Zoo();</span>
+<span class="nc" id="L99">		  zoo.setName(&quot;SuperZoo&quot;);</span>
+<span class="nc" id="L100">		  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));</span>
+		  
+<span class="nc" id="L102">		  boolean flag = true;</span>
+		  
+<span class="nc bnc" id="L104" title="All 2 branches missed.">		  while(flag) {</span>
+<span class="nc" id="L105">			  menu(zoo);</span>
+<span class="nc" id="L106">			  String s = br.readLine();</span>
+<span class="nc bnc" id="L107" title="All 8 branches missed.">			  switch(s) {</span>
+		        case &quot;1&quot;: 
+<span class="nc" id="L109">		          System.out.println(&quot;Quel est le nom du nouveau zoo ?&quot;);</span>
+<span class="nc" id="L110">		          String name = br.readLine();</span>
+<span class="nc" id="L111">		          zoo = new Zoo();</span>
+<span class="nc" id="L112">		          zoo.setName(name);</span>
+<span class="nc" id="L113">		          System.out.println(&quot;Zoo &quot; + name + &quot; cr�� !&quot;);</span>
+<span class="nc" id="L114">			    break;</span>
+		  		case &quot;2&quot;: 
+<span class="nc" id="L116">		  			 System.out.println(&quot;Quel type d'animal ?&quot;);</span>
+<span class="nc" id="L117">		  			  String typeS = br.readLine();</span>
+		  			  try {
+<span class="nc" id="L119">			  			  TypeAnimal type = TypeAnimal.valueOf(typeS);</span>
+<span class="nc" id="L120">			  			  zoo.ajouterSecteur(type.toString());</span>
+		  			  }
+<span class="nc" id="L122">		  			  catch (Exception e) {</span>
+<span class="nc" id="L123">			 	  			 System.out.println(typeS + &quot;n'est pas un type reconnu.&quot;);</span>
+<span class="nc" id="L124">		  			  }</span>
+<span class="nc" id="L125">		  		  break;</span>
+		  		case &quot;3&quot;: 
+<span class="nc" id="L127">		  			 System.out.println(&quot;Quel type d'animal ?&quot;);</span>
+<span class="nc" id="L128">		  			 String typeA = br.readLine();</span>
+		  			 try {
+<span class="nc" id="L130">			  			  TypeAnimal type = TypeAnimal.valueOf(typeA);</span>
+			  			  
+<span class="nc" id="L132">			  			  System.out.println(&quot;Quel est le nom de l'animal ?&quot;);</span>
+<span class="nc" id="L133">				          String nameA = br.readLine();</span>
+			  			  Animal a;
+<span class="nc bnc" id="L135" title="All 2 branches missed.">			  			  if(type == TypeAnimal.CHAT) {</span>
+<span class="nc" id="L136">			  				  a = new Chat(nameA);</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">			  			  }else if(type == TypeAnimal.CHIEN) {</span>
+<span class="nc" id="L138">				  				  a = new Chien(nameA);</span>
+				  			 }
+		  			  }
+<span class="nc" id="L141">		  			  catch (Exception e) {</span>
+<span class="nc" id="L142">			 	  			 System.out.println(typeA + &quot;n'est pas un type reconnu.&quot;);</span>
+<span class="nc" id="L143">		  			  }</span>
+<span class="nc" id="L144">		  			 break;</span>
+		  		case &quot;4&quot;: 
+					try {
+<span class="nc" id="L147">						zoo.nouveauVisiteur();</span>
+<span class="nc" id="L148">			  			System.out.println(&quot;Ajout d'un visiteur.&quot;);</span>
+<span class="nc" id="L149">					} catch (LimiteVisiteurExpetion e) {</span>
+<span class="nc" id="L150">			  			System.out.println(&quot;Impossible : zoo plein !&quot;);</span>
+<span class="nc" id="L151">					}</span>
+<span class="nc" id="L152">		  			 break;</span>
+		  		case &quot;5&quot;: 
+<span class="nc" id="L154">		  			serializeZoo(zoo);</span>
+
+<span class="nc" id="L156">		  			 System.out.println(&quot;Zoo sauvergard� !&quot;);</span>
+<span class="nc" id="L157">		  			 break;</span>
+		  		case &quot;6&quot;: 
+<span class="nc" id="L159">		  			deSerializeZoo(zoo);</span>
+<span class="nc" id="L160">		  			 System.out.println(&quot;Zoo charg� !&quot;);</span>
+<span class="nc" id="L161">		  			 break;</span>
+		  		case &quot;0&quot;:
+<span class="nc" id="L163">		  			 System.out.println(&quot;Au revoir.&quot;);</span>
+<span class="nc" id="L164">		  			 flag = false;</span>
+		  			 break;
+		  			
+		  			 
+	      }
+			 
+<span class="nc" id="L170">		  }</span>
+		 
+<span class="nc" id="L172">	  }</span>
+	//Serialisation XMl
+	private static void serializeZoo(Zoo zoo) {
+<span class="nc" id="L175">		  XMLEncoder encoder = null;</span>
+		  
+		  try {
+			/*encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(&quot;zoo.xml&quot;)));
+			encoder.writeObject(zoo);
+			encoder.flush();*/
+<span class="nc" id="L181">			  XStream xstream = new XStream();</span>
+<span class="nc" id="L182">			  xstream.toXML(zoo, new FileOutputStream(new File(&quot;zoo.xml&quot;)));</span>
+<span class="nc" id="L183">		} catch (FileNotFoundException e) {</span>
+<span class="nc" id="L184">			e.printStackTrace();</span>
+		}
+		  finally {
+<span class="nc bnc" id="L187" title="All 2 branches missed.">			  if(encoder != null)</span>
+<span class="nc" id="L188">				  encoder.close();</span>
+		  }
+<span class="nc" id="L190">	  }</span>
+	
+	//Désérialisation XML
+	  private static void deSerializeZoo(Zoo zoo) {
+		  FileInputStream file;
+		  
+		  try {
+<span class="nc" id="L197">			  XStream xstream = new XStream();</span>
+<span class="nc" id="L198">			  file = new FileInputStream(&quot;zoo.xml&quot;);</span>
+<span class="nc" id="L199">			 zoo = (Zoo) xstream.fromXML(file);</span>
+<span class="nc" id="L200">			  file.close();</span>
+<span class="nc" id="L201">		} catch (IOException e) {</span>
+<span class="nc" id="L202">			e.printStackTrace();</span>
+<span class="nc" id="L203">		}</span>
+		  
+<span class="nc" id="L205">	  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

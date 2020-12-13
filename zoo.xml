@@ -1,0 +1,14 @@
+<zoo.Zoo>
+  <visiteurs>0</visiteurs>
+  <secteursAnimaux>
+    <zoo.Secteur>
+      <typeAnimauxDansSecteur>CHAT</typeAnimauxDansSecteur>
+      <animauxDansSecteur/>
+    </zoo.Secteur>
+    <zoo.Secteur>
+      <typeAnimauxDansSecteur>CHIEN</typeAnimauxDansSecteur>
+      <animauxDansSecteur/>
+    </zoo.Secteur>
+  </secteursAnimaux>
+  <name>ZOOIMEN</name>
+</zoo.Zoo>
