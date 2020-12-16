@@ -33,7 +33,6 @@ public class App {
 		  logger.warn("Debut de l'application");
 		  logger.error("Debut de l'application");
 		  logger.fatal("Debut de l'application");
-		  
 		  interfaceUtilisateur();
 
 		Zoo zoo = new Zoo();
