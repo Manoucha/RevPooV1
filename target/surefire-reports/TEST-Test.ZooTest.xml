@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="Test.ZooTest" time="0.02" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="Test.ZooTest" time="0.021" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="14.0.2+12-46"/>
@@ -22,7 +22,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/macbook/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf7954742807460116272.tmp"/>
+    <property name="classworlds.conf" value="/Users/macbook/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf1816978087136230735.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/macbook/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="jdk.debug" value="release"/>
@@ -55,7 +55,7 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="Test.ZooTest" name="testSecteurComparator" time="0.013"/>
-  <testcase classname="Test.ZooTest" name="testGetLimiteVisiteur" time="0.007"/>
+  <testcase classname="Test.ZooTest" name="testSecteurComparator" time="0.015"/>
+  <testcase classname="Test.ZooTest" name="testGetLimiteVisiteur" time="0.006"/>
   <testcase classname="Test.ZooTest" name="testAnimauxDansSecteurs" time="0"/>
 </testsuite>
